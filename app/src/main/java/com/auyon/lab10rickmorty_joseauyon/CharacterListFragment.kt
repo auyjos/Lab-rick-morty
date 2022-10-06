@@ -16,16 +16,20 @@ import com.auyon.lab10rickmorty_joseauyon.Character
 import com.auyon.lab10rickmorty_joseauyon.CharactersResponse
 import com.auyon.lab10rickmorty_joseauyon.CharacterAdapter
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CharacterListFragment : Fragment(R.layout.fragment_character_list), CharacterAdapter.RecyclerViewCharactersEvents {
 
-    private lateinit var characters: MutableList<Character>
+    private var characters = mutableListOf<Character>()
     private lateinit var adapter: CharacterAdapter
     private lateinit var toolbar: MaterialToolbar
     private lateinit var recyclerCharacters: RecyclerView
+    private lateinit var database: Database
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,7 +92,6 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
 
         })
     }
-
     private fun setupRecycler(characters: MutableList<Character>) {
 
         this.characters = characters
@@ -99,9 +102,9 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list), Charac
         recyclerCharacters.adapter = adapter
     }
 
-    override fun onItemClicked(character: Character) {
+    override fun onItemClicked(character:Character) {
         val action = CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment(
-            character.id.toInt()
+            character.id
         )
 
         requireView().findNavController().navigate(action)

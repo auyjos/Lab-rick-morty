@@ -1,6 +1,5 @@
 package com.auyon.lab10rickmorty_joseauyon
 
-import com.auyon.lab10rickmorty_joseauyon.API_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

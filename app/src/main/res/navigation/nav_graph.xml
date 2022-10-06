@@ -19,6 +19,9 @@
         android:name="com.auyon.lab10rickmorty_joseauyon.CharacterDetailsFragment"
         android:label="@string/character_detail"
         tools:layout="@layout/fragment_character_details" >
+        <action
+            android:id="@+id/action_characterDetailsFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
         <argument
             android:name="id"
             app:argType="integer" />
